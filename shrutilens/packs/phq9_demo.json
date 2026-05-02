@@ -1,0 +1,81 @@
+{
+  "id": "phq9_demo",
+  "version": "0.1.0",
+  "title": "PHQ-9 Demo Pack",
+  "mode": "clinical_locked",
+  "language": "en",
+  "licensing": "Demo implementation for architecture validation. Confirm licensing and required wording before clinical use.",
+  "consent": "This is a structured mental health screening demo, not a diagnosis or emergency service. If you may be in immediate danger, contact local emergency services now.",
+  "disclaimer": "The system records transcript text and structured answers locally for review. Audio recording is off by default.",
+  "policy": {
+    "paraphrasing_allowed": false,
+    "adaptive_followup_allowed": false,
+    "confirmation_required": "low_confidence",
+    "confidence_threshold": 0.78
+  },
+  "scoring": {
+    "method": "sum",
+    "severity_bands": [
+      {"min": 0, "max": 4, "label": "minimal"},
+      {"min": 5, "max": 9, "label": "mild"},
+      {"min": 10, "max": 14, "label": "moderate"},
+      {"min": 15, "max": 19, "label": "moderately severe"},
+      {"min": 20, "max": 27, "label": "severe"}
+    ]
+  },
+  "items": [
+    {
+      "id": "phq9_1",
+      "text": "Over the last two weeks, how often have you been bothered by little interest or pleasure in doing things?",
+      "response_type": "frequency_0_3",
+      "locked_wording": true,
+      "anchors": [
+        {"id": "not_at_all", "label": "Not at all", "score": 0, "utterance_patterns": ["not at all", "never", "zero"]},
+        {"id": "several_days", "label": "Several days", "score": 1, "utterance_patterns": ["several days", "some days"]},
+        {"id": "more_than_half", "label": "More than half the days", "score": 2, "utterance_patterns": ["more than half", "half the days"]},
+        {"id": "nearly_every_day", "label": "Nearly every day", "score": 3, "utterance_patterns": ["nearly every day", "every day", "daily"]}
+      ]
+    },
+    {
+      "id": "phq9_2",
+      "text": "Over the last two weeks, how often have you been bothered by feeling down, depressed, or hopeless?",
+      "response_type": "frequency_0_3",
+      "locked_wording": true,
+      "anchors": [
+        {"id": "not_at_all", "label": "Not at all", "score": 0, "utterance_patterns": ["not at all", "never", "zero"]},
+        {"id": "several_days", "label": "Several days", "score": 1, "utterance_patterns": ["several days", "some days"]},
+        {"id": "more_than_half", "label": "More than half the days", "score": 2, "utterance_patterns": ["more than half", "half the days"]},
+        {"id": "nearly_every_day", "label": "Nearly every day", "score": 3, "utterance_patterns": ["nearly every day", "every day", "daily"]}
+      ]
+    },
+    {
+      "id": "phq9_9",
+      "text": "Over the last two weeks, how often have you been bothered by thoughts that you would be better off dead, or of hurting yourself in some way?",
+      "response_type": "frequency_0_3",
+      "locked_wording": true,
+      "tags": ["self_harm"],
+      "anchors": [
+        {"id": "not_at_all", "label": "Not at all", "score": 0, "utterance_patterns": ["not at all", "never", "zero"]},
+        {"id": "several_days", "label": "Several days", "score": 1, "utterance_patterns": ["several days", "some days"]},
+        {"id": "more_than_half", "label": "More than half the days", "score": 2, "utterance_patterns": ["more than half", "half the days"]},
+        {"id": "nearly_every_day", "label": "Nearly every day", "score": 3, "utterance_patterns": ["nearly every day", "every day", "daily"]}
+      ]
+    }
+  ],
+  "safety_hooks": [
+    {
+      "kind": "anchor_match",
+      "item_id": "phq9_9",
+      "anchor_ids": ["several_days", "more_than_half", "nearly_every_day"],
+      "severity": "crisis",
+      "message": "Self-harm signal detected. Interrupt assessment and route to crisis protocol."
+    },
+    {
+      "kind": "keyword",
+      "keywords": ["kill myself", "suicide", "end my life", "hurt myself"],
+      "severity": "crisis",
+      "message": "Self-harm keyword detected. Interrupt assessment and route to crisis protocol."
+    }
+  ],
+  "export_schema": {"kind": "clinical_screen", "scores": true, "safety_events": true}
+}

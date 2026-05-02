@@ -1,0 +1,52 @@
+{
+  "id": "product_discovery_demo",
+  "version": "0.1.0",
+  "title": "Product Discovery Demo",
+  "mode": "research_flexible",
+  "language": "en",
+  "licensing": "Original demo pack.",
+  "consent": "This conversation captures transcript text and structured research notes locally.",
+  "disclaimer": "You can skip any question. This is not a clinical assessment.",
+  "policy": {
+    "paraphrasing_allowed": true,
+    "adaptive_followup_allowed": true,
+    "confirmation_required": "never",
+    "confidence_threshold": 0.5
+  },
+  "scoring": {"method": "none", "severity_bands": []},
+  "items": [
+    {
+      "id": "role",
+      "text": "What is your role, and what kind of work are you trying to get done?",
+      "response_type": "free_text",
+      "locked_wording": false,
+      "max_followups": 1,
+      "tags": ["persona"]
+    },
+    {
+      "id": "pain",
+      "text": "Tell me about the last time this problem was frustrating or expensive.",
+      "response_type": "free_text",
+      "locked_wording": false,
+      "max_followups": 2,
+      "tags": ["pain", "urgency"]
+    },
+    {
+      "id": "current_solution",
+      "text": "What do you use today to solve or work around this?",
+      "response_type": "free_text",
+      "locked_wording": false,
+      "max_followups": 1,
+      "tags": ["alternatives"]
+    }
+  ],
+  "safety_hooks": [
+    {
+      "kind": "keyword",
+      "keywords": ["kill myself", "suicide", "end my life", "hurt myself"],
+      "severity": "crisis",
+      "message": "Safety concern detected during research conversation. Pause and show support path."
+    }
+  ],
+  "export_schema": {"kind": "research_interview", "scores": false, "tags": true}
+}

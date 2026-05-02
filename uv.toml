@@ -1,0 +1,5 @@
+# Python 3.13 skips .pth files whose names start with "_", which breaks PEP 660
+# editable installs (e.g. __editable__.pkg.pth). Non-editable puts the package in
+# site-packages so console uv run shrutilens --port 8000
+scripts work from any working directory.
+no-editable = true

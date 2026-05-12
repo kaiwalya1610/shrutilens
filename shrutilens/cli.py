@@ -10,7 +10,7 @@ def main() -> None:
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", default=8000, type=int)
     args = parser.parse_args()
-    uvicorn.run("shrutilens.api.app:app", host=args.host, port=args.port, reload=False)
+    uvicorn.run("shrutilens.api:app", host=args.host, port=args.port, reload=False)
 
 
 if __name__ == "__main__":

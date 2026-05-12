@@ -18,7 +18,7 @@
     {
       "id": "role",
       "text": "What is your role, and what kind of work are you trying to get done?",
-      "response_type": "free_text",
+      "response_type": "open_text",
       "locked_wording": false,
       "max_followups": 1,
       "tags": ["persona"]
@@ -26,7 +26,7 @@
     {
       "id": "pain",
       "text": "Tell me about the last time this problem was frustrating or expensive.",
-      "response_type": "free_text",
+      "response_type": "open_text",
       "locked_wording": false,
       "max_followups": 2,
       "tags": ["pain", "urgency"]
@@ -34,7 +34,7 @@
     {
       "id": "current_solution",
       "text": "What do you use today to solve or work around this?",
-      "response_type": "free_text",
+      "response_type": "open_text",
       "locked_wording": false,
       "max_followups": 1,
       "tags": ["alternatives"]
@@ -42,6 +42,7 @@
   ],
   "safety_hooks": [
     {
+      "id": "research_self_harm",
       "kind": "keyword",
       "keywords": ["kill myself", "suicide", "end my life", "hurt myself"],
       "severity": "crisis",

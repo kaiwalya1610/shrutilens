@@ -27,7 +27,7 @@
     {
       "id": "phq9_1",
       "text": "Over the last two weeks, how often have you been bothered by little interest or pleasure in doing things?",
-      "response_type": "frequency_0_3",
+      "response_type": "choice",
       "locked_wording": true,
       "anchors": [
         {"id": "not_at_all", "label": "Not at all", "score": 0, "utterance_patterns": ["not at all", "never", "zero"]},
@@ -39,7 +39,7 @@
     {
       "id": "phq9_2",
       "text": "Over the last two weeks, how often have you been bothered by feeling down, depressed, or hopeless?",
-      "response_type": "frequency_0_3",
+      "response_type": "choice",
       "locked_wording": true,
       "anchors": [
         {"id": "not_at_all", "label": "Not at all", "score": 0, "utterance_patterns": ["not at all", "never", "zero"]},
@@ -51,7 +51,7 @@
     {
       "id": "phq9_9",
       "text": "Over the last two weeks, how often have you been bothered by thoughts that you would be better off dead, or of hurting yourself in some way?",
-      "response_type": "frequency_0_3",
+      "response_type": "choice",
       "locked_wording": true,
       "tags": ["self_harm"],
       "anchors": [
@@ -64,6 +64,7 @@
   ],
   "safety_hooks": [
     {
+      "id": "item9_positive",
       "kind": "anchor_match",
       "item_id": "phq9_9",
       "anchor_ids": ["several_days", "more_than_half", "nearly_every_day"],
@@ -71,6 +72,7 @@
       "message": "Self-harm signal detected. Interrupt assessment and route to crisis protocol."
     },
     {
+      "id": "self_harm_keywords",
       "kind": "keyword",
       "keywords": ["kill myself", "suicide", "end my life", "hurt myself"],
       "severity": "crisis",

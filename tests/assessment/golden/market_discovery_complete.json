@@ -1,0 +1,24 @@
+{
+  "pack": {
+    "id": "market_discovery",
+    "language": "en",
+    "mode": "research_flexible",
+    "title": "Market Discovery Interview",
+    "version": "0.1.0"
+  },
+  "status": "completed",
+  "current_item_id": null,
+  "visited_item_ids": ["role", "has_problem", "current_solution", "closing"],
+  "responses": {
+    "role": {"anchor_id": null, "anchor_ids": [], "value": "Product manager", "skipped": false},
+    "has_problem": {"anchor_id": "no", "anchor_ids": [], "value": "no", "skipped": false},
+    "current_solution": {"anchor_id": null, "anchor_ids": [], "value": "Spreadsheets", "skipped": false},
+    "closing": {"anchor_id": null, "anchor_ids": [], "value": "Clear time savings", "skipped": false}
+  },
+  "score": {
+    "total": null,
+    "severity": null,
+    "by_item": {}
+  },
+  "safety_events": []
+}

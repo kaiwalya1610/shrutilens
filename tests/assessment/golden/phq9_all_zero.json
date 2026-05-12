@@ -1,0 +1,29 @@
+{
+  "pack": {
+    "id": "phq9",
+    "language": "en",
+    "mode": "clinical_locked",
+    "title": "PHQ-9",
+    "version": "0.1.0"
+  },
+  "status": "completed",
+  "current_item_id": null,
+  "visited_item_ids": ["phq9_1", "phq9_2", "phq9_3", "phq9_4", "phq9_5", "phq9_6", "phq9_7", "phq9_8", "phq9_9"],
+  "responses": {
+    "phq9_1": {"anchor_id": "not_at_all", "anchor_ids": [], "value": null, "skipped": false},
+    "phq9_2": {"anchor_id": "not_at_all", "anchor_ids": [], "value": null, "skipped": false},
+    "phq9_3": {"anchor_id": "not_at_all", "anchor_ids": [], "value": null, "skipped": false},
+    "phq9_4": {"anchor_id": "not_at_all", "anchor_ids": [], "value": null, "skipped": false},
+    "phq9_5": {"anchor_id": "not_at_all", "anchor_ids": [], "value": null, "skipped": false},
+    "phq9_6": {"anchor_id": "not_at_all", "anchor_ids": [], "value": null, "skipped": false},
+    "phq9_7": {"anchor_id": "not_at_all", "anchor_ids": [], "value": null, "skipped": false},
+    "phq9_8": {"anchor_id": "not_at_all", "anchor_ids": [], "value": null, "skipped": false},
+    "phq9_9": {"anchor_id": "not_at_all", "anchor_ids": [], "value": null, "skipped": false}
+  },
+  "score": {
+    "total": 0,
+    "severity": "minimal",
+    "by_item": {"phq9_1": 0, "phq9_2": 0, "phq9_3": 0, "phq9_4": 0, "phq9_5": 0, "phq9_6": 0, "phq9_7": 0, "phq9_8": 0, "phq9_9": 0}
+  },
+  "safety_events": []
+}

@@ -36,6 +36,22 @@ uv run pytest
 - `phq9_demo`: locked clinical demo pack with deterministic sum scoring and self-harm interruption. This is for architecture validation only; verify licensing and wording before clinical use.
 - `product_discovery_demo`: flexible research interview pack with free-text responses.
 
+## Deterministic Assessment Engine
+
+Task 02 adds a standalone package under `voice_assessor/assessment`:
+
+- `pack_loader.py`: loads YAML or JSON packs and validates structure.
+- `runner.py`: starts sessions, returns the active item, accepts normalized responses, and advances state.
+- `scoring.py`: deterministic scoring.
+- `branching.py`: deterministic skip/branch rules.
+- `safety.py`: deterministic safety hooks that can interrupt normal flow.
+- `exports.py`: structured assessment records.
+
+Example packs live in:
+
+- `voice_assessor/packs/clinical/phq9.yaml`
+- `voice_assessor/packs/research/market_discovery.yaml`
+
 ## Storage
 
 - SQLite: `data/shrutilens.sqlite3`

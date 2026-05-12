@@ -1,0 +1,115 @@
+id: phq9
+version: 0.1.0
+title: PHQ-9
+mode: clinical_locked
+language: en
+licensing: Demo educational pack. Verify official licensing and wording requirements before clinical use.
+consent: This is a structured screening assessment, not a diagnosis or emergency service.
+disclaimer: If you may be in immediate danger, contact local emergency services now.
+policy:
+  paraphrasing_allowed: false
+  adaptive_followup_allowed: false
+  clarification_on_ambiguous: true
+scoring:
+  method: sum
+  severity_bands:
+    - min: 0
+      max: 4
+      label: minimal
+    - min: 5
+      max: 9
+      label: mild
+    - min: 10
+      max: 14
+      label: moderate
+    - min: 15
+      max: 19
+      label: moderately_severe
+    - min: 20
+      max: 27
+      label: severe
+items:
+  - id: phq9_1
+    text: Over the last two weeks, how often have you been bothered by little interest or pleasure in doing things?
+    response_type: choice
+    locked_wording: true
+    anchors: &frequency_anchors
+      - id: not_at_all
+        label: Not at all
+        score: 0
+      - id: several_days
+        label: Several days
+        score: 1
+      - id: more_than_half
+        label: More than half the days
+        score: 2
+      - id: nearly_every_day
+        label: Nearly every day
+        score: 3
+  - id: phq9_2
+    text: Over the last two weeks, how often have you been bothered by feeling down, depressed, or hopeless?
+    response_type: choice
+    locked_wording: true
+    anchors: *frequency_anchors
+  - id: phq9_3
+    text: Over the last two weeks, how often have you been bothered by trouble falling or staying asleep, or sleeping too much?
+    response_type: choice
+    locked_wording: true
+    anchors: *frequency_anchors
+  - id: phq9_4
+    text: Over the last two weeks, how often have you been bothered by feeling tired or having little energy?
+    response_type: choice
+    locked_wording: true
+    anchors: *frequency_anchors
+  - id: phq9_5
+    text: Over the last two weeks, how often have you been bothered by poor appetite or overeating?
+    response_type: choice
+    locked_wording: true
+    anchors: *frequency_anchors
+  - id: phq9_6
+    text: Over the last two weeks, how often have you been bothered by feeling bad about yourself, or that you are a failure or have let yourself or your family down?
+    response_type: choice
+    locked_wording: true
+    anchors: *frequency_anchors
+  - id: phq9_7
+    text: Over the last two weeks, how often have you been bothered by trouble concentrating on things, such as reading the newspaper or watching television?
+    response_type: choice
+    locked_wording: true
+    anchors: *frequency_anchors
+  - id: phq9_8
+    text: Over the last two weeks, how often have you been bothered by moving or speaking so slowly that other people could have noticed, or the opposite, being so fidgety or restless that you have been moving around a lot more than usual?
+    response_type: choice
+    locked_wording: true
+    anchors: *frequency_anchors
+  - id: phq9_9
+    text: Over the last two weeks, how often have you been bothered by thoughts that you would be better off dead, or of hurting yourself in some way?
+    response_type: choice
+    locked_wording: true
+    tags:
+      - self_harm
+    anchors: *frequency_anchors
+safety_hooks:
+  - id: item9_positive
+    kind: anchor_match
+    item_id: phq9_9
+    anchor_ids:
+      - several_days
+      - more_than_half
+      - nearly_every_day
+    severity: crisis
+    interrupt: true
+    message: Positive response to self-harm item. Interrupt normal assessment and route to safety protocol.
+  - id: self_harm_keywords
+    kind: keyword
+    keywords:
+      - suicide
+      - kill myself
+      - end my life
+      - hurt myself
+    severity: crisis
+    interrupt: true
+    message: Self-harm language detected. Interrupt normal assessment and route to safety protocol.
+export_schema:
+  kind: clinical_screen
+  scores: true
+  safety_events: true

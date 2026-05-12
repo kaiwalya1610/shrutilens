@@ -1,18 +1,10 @@
 from __future__ import annotations
 
-from pathlib import Path
-
 import pytest
 
-from shrutilens.core.runner import build_default_runner
-from shrutilens.packs.loader import PackRepository
+from shrutilens.packs import load_pack_dir
 
 
 @pytest.fixture
-def pack_repository() -> PackRepository:
-    return PackRepository()
-
-
-@pytest.fixture
-def runner(tmp_path: Path):
-    return build_default_runner(tmp_path / "data", tmp_path / "exports")
+def packs():
+    return load_pack_dir()

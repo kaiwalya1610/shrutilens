@@ -4,16 +4,11 @@ from pathlib import Path
 
 from fastapi.testclient import TestClient
 
-from shrutilens.api.app import create_app
-from shrutilens.core.runner import build_default_runner
-from shrutilens.packs.loader import PackRepository
+from shrutilens.api import create_app
 
 
 def test_api_session_flow(tmp_path: Path):
-    app = create_app(
-        pack_repository=PackRepository(),
-        runner=build_default_runner(tmp_path / "data", tmp_path / "exports"),
-    )
+    app = create_app(data_dir=tmp_path / "data", export_dir=tmp_path / "exports")
     client = TestClient(app)
 
     packs = client.get("/packs")
@@ -31,5 +26,5 @@ def test_api_session_flow(tmp_path: Path):
 
     assert response.status_code == 200
     payload = response.json()
-    assert payload["session"]["current_index"] == 1
+    assert payload["session"]["current_item_id"] == "pain"
     assert payload["prompt"]["item_id"] == "pain"

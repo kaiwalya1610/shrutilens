@@ -1,0 +1,78 @@
+id: market_discovery
+version: 0.1.0
+title: Market Discovery Interview
+mode: research_flexible
+language: en
+licensing: Original demo pack.
+consent: This interview stores transcript text and structured research answers locally.
+disclaimer: This is not a clinical assessment.
+policy:
+  paraphrasing_allowed: true
+  adaptive_followup_allowed: true
+  clarification_on_ambiguous: true
+scoring:
+  method: none
+items:
+  - id: role
+    text: What is your role, and what kind of work are you trying to get done?
+    response_type: open_text
+    locked_wording: false
+    max_followups: 1
+    tags:
+      - persona
+  - id: has_problem
+    text: Is this problem painful enough that you are actively looking for a better solution?
+    response_type: choice
+    locked_wording: false
+    anchors:
+      - id: "yes"
+        label: "Yes"
+        value: true
+      - id: "no"
+        label: "No"
+        value: false
+      - id: unsure
+        label: Unsure
+        value: unsure
+  - id: pain_story
+    text: Tell me about the last time this problem was frustrating or expensive.
+    response_type: open_text
+    locked_wording: false
+    max_followups: 2
+    tags:
+      - pain
+      - urgency
+  - id: current_solution
+    text: What do you use today to solve or work around this?
+    response_type: open_text
+    locked_wording: false
+    max_followups: 1
+    tags:
+      - alternatives
+  - id: closing
+    text: What would make a new solution worth trying?
+    response_type: open_text
+    locked_wording: false
+    tags:
+      - buying_trigger
+branches:
+  - id: skip_pain_if_no_problem
+    item_id: has_problem
+    operator: equals
+    value: "no"
+    goto: current_solution
+safety_hooks:
+  - id: research_self_harm_keywords
+    kind: keyword
+    keywords:
+      - suicide
+      - kill myself
+      - end my life
+      - hurt myself
+    severity: crisis
+    interrupt: true
+    message: Safety concern detected during research interview. Pause and show support path.
+export_schema:
+  kind: research_interview
+  scores: false
+  tags: true
